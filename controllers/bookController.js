@@ -217,7 +217,7 @@ exports.book_delete_get = (req, res) => {
       return next(err);
     }
     if (results.book == null) {
-      res.redirect("/catalog/books");
+      return res.redirect("/catalog/books");
     }
 
     res.render("book_delete", {
@@ -246,11 +246,12 @@ exports.book_delete_post = (req, res) => {
       res.redirect("/catalog/books");
     }
     if (results.bookinstances.length > 0) {
-      res.render("book_delete", {
+      return res.render("book_delete", {
         title: "Delete Book",
         book: results.book,
         bookinstance_list: results.bookinstances
       });
+      
     }
 
     Book.findByIdAndRemove(req.body.bookid).exec((err, result) => {

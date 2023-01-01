@@ -42,4 +42,23 @@ AuthorSchema.virtual("date_of_death_formatted").get(function () {
     return "";
 })
 
+AuthorSchema.virtual("date_of_birth_html").get(function() {
+    if (this.date_of_birth) {
+        const year = this.date_of_birth.toLocaleString("default", { year: "numeric" });
+        const month = this.date_of_birth.toLocaleString("default", { month: "2-digit" });
+        const date = this.date_of_birth.toLocaleString("default", { day: "2-digit" });
+        return `${year}-${month}-${date}`;
+    }
+    return "";
+})
+
+AuthorSchema.virtual("date_of_death_html").get(function() {
+    if (this.date_of_death) {
+        const year = this.date_of_death.toLocaleString("default", { year: "numeric" });
+        const month = this.date_of_death.toLocaleString("default", { month: "2-digit" });
+        const date = this.date_of_death.toLocaleString("default", { day: "2-digit" });
+        return `${year}-${month}-${date}`;    }
+    return "";
+})
+
 module.exports = mongoose.model("Author", AuthorSchema);
