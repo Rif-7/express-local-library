@@ -203,7 +203,7 @@ exports.book_create_post = [
 
 
 // Display book delete form on GET.
-exports.book_delete_get = (req, res) => {
+exports.book_delete_get = (req, res, next) => {
   async.parallel({
     book(callback) {
       Book.findById(req.params.id).exec(callback);
@@ -229,7 +229,7 @@ exports.book_delete_get = (req, res) => {
 };
 
 // Handle book delete on POST.
-exports.book_delete_post = (req, res) => {
+exports.book_delete_post = (req, res, next) => {
   async.parallel({
     book(callback) {
       Book.findById(req.body.bookid).exec(callback);

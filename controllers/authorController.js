@@ -55,7 +55,7 @@ exports.author_detail = (req, res, next) => {
 
 
 // Display Author create form on GET.
-exports.author_create_get = (req, res, next) => {
+exports.author_create_get = (req, res) => {
   res.render("author_form", { title: "Create Author" });
 };
 
@@ -188,7 +188,7 @@ exports.author_delete_post = (req, res, next) => {
 
 
 // Display Author update form on GET.
-exports.author_update_get = (req, res) => {
+exports.author_update_get = (req, res, next) => {
   async.parallel({
     author(callback) {
       Author.findById(req.params.id).exec(callback);
