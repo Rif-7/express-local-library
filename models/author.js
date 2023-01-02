@@ -33,14 +33,14 @@ AuthorSchema.virtual("date_of_birth_formatted").get(function () {
         return DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED);
     }
     return "";
-})
+});
 
 AuthorSchema.virtual("date_of_death_formatted").get(function () {
     if (this.date_of_death) {
         return DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED);
     }
     return "";
-})
+});
 
 AuthorSchema.virtual("date_of_birth_html").get(function() {
     if (this.date_of_birth) {
@@ -50,7 +50,7 @@ AuthorSchema.virtual("date_of_birth_html").get(function() {
         return `${year}-${month}-${date}`;
     }
     return "";
-})
+});
 
 AuthorSchema.virtual("date_of_death_html").get(function() {
     if (this.date_of_death) {
@@ -59,6 +59,6 @@ AuthorSchema.virtual("date_of_death_html").get(function() {
         const date = this.date_of_death.toLocaleString("default", { day: "2-digit" });
         return `${year}-${month}-${date}`;    }
     return "";
-})
+});
 
 module.exports = mongoose.model("Author", AuthorSchema);

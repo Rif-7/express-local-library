@@ -23,7 +23,15 @@ BookInstanceSchema.virtual("url").get(function () {
 
 BookInstanceSchema.virtual("due_back_formatted").get(function () {
   return DateTime.fromJSDate(this.due_back).toLocaleString(DateTime.DATE_MED);
-})
+});
+
+BookInstanceSchema.virtual("due_back_html").get(function() {
+    const year = this.due_back.toLocaleString("default", { year: "numeric" });
+    const month = this.due_back.toLocaleString("default", { month: "2-digit" });
+    const date = this.due_back.toLocaleString("default", { day: "2-digit" });
+    return `${year}-${month}-${date}`;    
+});
+
 
 // Export model
 module.exports = mongoose.model("BookInstance", BookInstanceSchema);
